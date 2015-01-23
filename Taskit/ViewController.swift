@@ -29,6 +29,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showTaskDetail" {
+            let detailVC: TaskDetailViewController = segue.destinationViewController as TaskDetailViewController
+            //indexPath is both a section and row
+            let indexPath = self.tableView.indexPathForSelectedRow()
+            let thisTask = taskArray[indexPath!.row]
+            detailVC.detailTaskModel = thisTask
+            
+            //we shouldn't be updating UI elements here: technically, they have not been instantiated
+        }
+    }
+    
     //UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.taskArray.count
@@ -46,6 +58,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     //UITableViewDelegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        println(indexPath.row)
+        //showTaskDetail is what we named our segue
+        performSegueWithIdentifier("showTaskDetail", sender: self)
     }
     
     //added by Nicholai based on comments in lecture

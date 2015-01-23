@@ -85,24 +85,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Task" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="km9-bo-k1U">
-                                <rect key="frame" x="11" y="14" width="280" height="30"/>
+                                <rect key="frame" x="11" y="72" width="280" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Subtask" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vdu-oM-F50">
+                                <rect key="frame" x="11" y="111" width="280" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="ggv-gD-fVG">
-                                <rect key="frame" x="11" y="119" width="320" height="162"/>
+                                <rect key="frame" x="11" y="160" width="320" height="162"/>
                                 <date key="date" timeIntervalSinceReferenceDate="443413503.51832902">
                                     <!--2015-01-20 02:25:03 +0000-->
                                 </date>
                             </datePicker>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Subtask" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vdu-oM-F50">
-                                <rect key="frame" x="11" y="64" width="280" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="dueDatePicker" destination="ggv-gD-fVG" id="nNM-8j-dsv"/>
+                        <outlet property="subtaskTextField" destination="Vdu-oM-F50" id="yBj-8X-mga"/>
+                        <outlet property="taskTextField" destination="km9-bo-k1U" id="Orl-YD-YcN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qRX-Mx-QEu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
