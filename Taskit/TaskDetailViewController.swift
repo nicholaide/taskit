@@ -22,6 +22,7 @@ class TaskDetailViewController: UIViewController {
         
         self.taskTextField.text = detailTaskModel.task
         self.subtaskTextField.text = detailTaskModel.subTask
+        self.dueDatePicker.date = detailTaskModel.date
         
     }
 
@@ -30,5 +31,11 @@ class TaskDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    //before adding the AddTaskViewContr, we were given this action for "free", but adding the segue modified the behaviour
+    @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
+        self.navigationController?.popViewControllerAnimated(true)
+        
+    }
 
 }
