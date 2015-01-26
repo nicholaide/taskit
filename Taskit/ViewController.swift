@@ -37,13 +37,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showTaskDetail" {
             let detailVC: TaskDetailViewController = segue.destinationViewController as TaskDetailViewController
+            
             //indexPath is both a section and row
             let indexPath = self.tableView.indexPathForSelectedRow()
             let thisTask = taskArray[indexPath!.row]
             detailVC.detailTaskModel = thisTask
-            
             //we shouldn't be updating UI elements here: technically, they have not been instantiated
         }
+        
+        else if segue.identifier == "showTaskAdd" {
+            let addTaskVC:AddTaskViewController = segue.destinationViewController as AddTaskViewController
+            addTaskVC.mainVC = self //see the var declaration in the addtaskviewcontroller
+            
+            
+        }
+        
     }
     @IBAction func addButtonTapped(sender: UIBarButtonItem) {
         self.performSegueWithIdentifier("showTaskAdd", sender: self)
