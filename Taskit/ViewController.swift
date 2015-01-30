@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
+    var baseArray:[[TaskModel]] = []
     var taskArray:[TaskModel] = []
     
     override func viewDidLoad() {
@@ -21,10 +22,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let date3 = Date.from(year: 2014, month: 12, day: 13)
         
         
-        let task1 = TaskModel(task: "Study French", subTask: "Verbs", date: date1)
-        let task2 = TaskModel(task: "Eat Dinner", subTask: "Burgers", date: date2)
-        taskArray = [task1, task2, TaskModel(task: "Gym", subTask: "Leg Day", date: date3)]
+        let task1 = TaskModel(task: "Study French", subTask: "Verbs", date: date1, completed: false)
+        let task2 = TaskModel(task: "Eat Dinner", subTask: "Burgers", date: date2, completed: false)
+        let taskArray = [task1, task2, TaskModel(task: "Gym", subTask: "Leg Day", date: date3, completed: false)]
 
+        var completedArray = [TaskModel(task:"Code", subTask:"Task Project", date:date2, completed:true)]
+        baseArray = [taskArray, completedArray]
         
         self.tableView.reloadData()
     }
@@ -32,6 +35,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //technically not needed, but functions named tableViews update the cell and arraycount
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+//        func sortbyDate (taskOne:TaskModel, taskTwo: TaskModel) -> Bool {
+//            return taskOne.date.timeIntervalSince1970 < taskTwo.date.timeIntervalSince1970
+//        }
+        
+        
+        //taskArray.sorted(sortbyDate)
+        
+        //this is equivalent to 
+        taskArray = taskArray.sorted{(taskOne:TaskModel, taskTwo: TaskModel) -> Bool in return taskOne.date.timeIntervalSince1970 < taskTwo.date.timeIntervalSince1970}
+        
         self.tableView.reloadData()
     }
     
@@ -90,6 +104,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 75
     }
+    
+    
+    //Helpers
+
 
 
 }

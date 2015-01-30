@@ -12,4 +12,5 @@ struct TaskModel {
     var task:String
     var subTask:String
     var date:NSDate //apple hasn't created a good way to create nsdate in swift
+    var completed:Bool
 }
