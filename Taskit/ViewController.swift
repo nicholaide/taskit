@@ -36,15 +36,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-//        func sortbyDate (taskOne:TaskModel, taskTwo: TaskModel) -> Bool {
-//            return taskOne.date.timeIntervalSince1970 < taskTwo.date.timeIntervalSince1970
-//        }
+        //only sort the ucompleted tasks
         
-        
-        //taskArray.sorted(sortbyDate)
-        
-        //this is equivalent to 
-        taskArray = taskArray.sorted{(taskOne:TaskModel, taskTwo: TaskModel) -> Bool in return taskOne.date.timeIntervalSince1970 < taskTwo.date.timeIntervalSince1970}
+        baseArray[0] = baseArray[0].sorted{
+            (taskOne:TaskModel, taskTwo: TaskModel) -> Bool in return taskOne.date.timeIntervalSince1970 < taskTwo.date.timeIntervalSince1970}
         
         self.tableView.reloadData()
     }
@@ -60,7 +55,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             //indexPath is both a section and row
             let indexPath = self.tableView.indexPathForSelectedRow()
-            let thisTask = taskArray[indexPath!.row]
+            let thisTask = baseArray[indexPath!.section][indexPath!.row]
             detailVC.detailTaskModel = thisTask
             detailVC.mainVC = self
             //we shouldn't be updating UI elements here: technically, they have not been instantiated
@@ -79,13 +74,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     //UITableViewDataSource
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return baseArray.count
+    }
+    
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.taskArray.count
+        return baseArray[section].count
     }
     
     //becaise of taskArray.count, this function will be called three times
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let thisTask = taskArray[indexPath.row]
+        let thisTask = baseArray[indexPath.section][indexPath.row]
         var cell: TaskCell = tableView.dequeueReusableCellWithIdentifier("myCell") as TaskCell
         cell.taskLabel.text = thisTask.task
         cell.descriptionLabel.text = thisTask.subTask
@@ -105,6 +106,37 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return 75
     }
     
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 25
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "To do"
+        }
+        else {
+            return "Completed"
+        }
+    }
+    
+    
+    //swipe functionality; what to do with a swiped cell
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let thisTask = baseArray[indexPath.section][indexPath.row]
+        
+        if indexPath.section == 0 {
+            var newTask = TaskModel(task: thisTask.task, subTask: thisTask.subTask, date: thisTask.date, completed: true)
+            baseArray[1].append(newTask)
+        }
+        else {
+            var newTask = TaskModel(task: thisTask.task, subTask: thisTask.subTask, date: thisTask.date, completed: false)
+            baseArray[0].append(newTask)
+        }
+        
+        baseArray[indexPath.section].removeAtIndex(indexPath.row)
+        tableView.reloadData()
+    }
     
     //Helpers
 
