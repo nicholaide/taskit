@@ -16,32 +16,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let date1 = Date.from(year: 2014, month: 05, day: 20)
-        let date2 = Date.from(year: 2014, month: 03, day: 3)
-        let date3 = Date.from(year: 2014, month: 12, day: 13)
-        
-        
-        let task1 = TaskModel(task: "Study French", subTask: "Verbs", date: date1, completed: false)
-        let task2 = TaskModel(task: "Eat Dinner", subTask: "Burgers", date: date2, completed: false)
-        let taskArray = [task1, task2, TaskModel(task: "Gym", subTask: "Leg Day", date: date3, completed: false)]
 
-        var completedArray = [TaskModel(task:"Code", subTask:"Task Project", date:date2, completed:true)]
-        baseArray = [taskArray, completedArray]
-        
-        self.tableView.reloadData()
-    }
-
-    //technically not needed, but functions named tableViews update the cell and arraycount
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        //only sort the ucompleted tasks
-        
-        baseArray[0] = baseArray[0].sorted{
-            (taskOne:TaskModel, taskTwo: TaskModel) -> Bool in return taskOne.date.timeIntervalSince1970 < taskTwo.date.timeIntervalSince1970}
-        
-        self.tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {

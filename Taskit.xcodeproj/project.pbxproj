@@ -14,6 +14,7 @@
 		3155034D1A6B3EC1006C2C4C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3155034B1A6B3EC1006C2C4C /* LaunchScreen.xib */; };
 		315503591A6B3EC2006C2C4C /* TaskitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315503581A6B3EC2006C2C4C /* TaskitTests.swift */; };
 		315503631A6B4D61006C2C4C /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315503621A6B4D61006C2C4C /* TaskCell.swift */; };
+		31BA39051A8DABB600C16C1D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31BA39041A8DABB600C16C1D /* CoreData.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		31CC21311A6DEE3600C14931 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC21301A6DEE3600C14931 /* TaskModel.swift */; };
 		31CC21331A6DEFD000C14931 /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC21321A6DEFD000C14931 /* AddTaskViewController.swift */; };
 		31CC21351A6DF34B00C14931 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC21341A6DF34B00C14931 /* TaskDetailViewController.swift */; };
@@ -42,6 +43,7 @@
 		315503571A6B3EC2006C2C4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		315503581A6B3EC2006C2C4C /* TaskitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskitTests.swift; sourceTree = "<group>"; };
 		315503621A6B4D61006C2C4C /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
+		31BA39041A8DABB600C16C1D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		31CC21301A6DEE3600C14931 /* TaskModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		31CC21321A6DEFD000C14931 /* AddTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		31CC21341A6DF34B00C14931 /* TaskDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31BA39051A8DABB600C16C1D /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +108,7 @@
 		315503401A6B3EC1006C2C4C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				31BA39041A8DABB600C16C1D /* CoreData.framework */,
 				315503411A6B3EC1006C2C4C /* Info.plist */,
 			);
 			name = "Supporting Files";
