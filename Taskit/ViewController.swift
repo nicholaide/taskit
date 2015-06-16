@@ -13,7 +13,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     @IBOutlet weak var tableView: UITableView!
     
-    let managedObjectContext  = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
+    let managedObjectContext  = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext!
     var fetchedResultsController:NSFetchedResultsController = NSFetchedResultsController()
     
     //var taskArray:[TaskModel] = []
@@ -38,18 +38,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showTaskDetail" {
-            let detailVC: TaskDetailViewController = segue.destinationViewController as TaskDetailViewController
+            let detailVC: TaskDetailViewController = segue.destinationViewController as! TaskDetailViewController
             
             //indexPath is both a section and row
             let indexPath = self.tableView.indexPathForSelectedRow()
-            let thisTask = fetchedResultsController.objectAtIndexPath(indexPath!) as TaskModel
+            let thisTask = fetchedResultsController.objectAtIndexPath(indexPath!) as! TaskModel
             detailVC.detailTaskModel = thisTask
          
             //we shouldn't be updating UI elements here: technically, they have not been instantiated
         }
         
         else if segue.identifier == "showTaskAdd" {
-            let addTaskVC:AddTaskViewController = segue.destinationViewController as AddTaskViewController
+            let addTaskVC:AddTaskViewController = segue.destinationViewController as! AddTaskViewController
             
         }
         
@@ -73,9 +73,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         //passing the indexPath figures out the row and col for us
-        let thisTask = fetchedResultsController.objectAtIndexPath(indexPath) as TaskModel
+        let thisTask = fetchedResultsController.objectAtIndexPath(indexPath) as! TaskModel
         
-        var cell: TaskCell = tableView.dequeueReusableCellWithIdentifier("myCell") as TaskCell
+        var cell: TaskCell = tableView.dequeueReusableCellWithIdentifier("myCell") as! TaskCell
         cell.taskLabel.text = thisTask.task
         cell.descriptionLabel.text = thisTask.subtask
         cell.dateLabel.text = Date.toString(date: thisTask.date)
@@ -99,6 +99,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        if fetchedResultsController.sections?.count == 1 {
+            let fetchedObjects = fetchedResultsController.fetchedObjects!
+            let testTask:TaskModel = fetchedObjects[0] as! TaskModel
+            if testTask.completed == true {
+                return "Completed"
+            }
+            else {
+                return "To do"
+            }
+        }
+        
         if section == 0 {
             return "To do"
         }
@@ -111,16 +123,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //swipe functionality; what to do with a swiped cell
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
-        let thisTask = fetchedResultsController.objectAtIndexPath(indexPath) as TaskModel
+        let thisTask = fetchedResultsController.objectAtIndexPath(indexPath) as! TaskModel
         
-        if indexPath.section == 0 {
-            thisTask.completed = true
-        }
-        else {
+        if thisTask.completed == true {
             thisTask.completed = false
         }
+        else {
+            thisTask.completed = true
+        }
         
-        (UIApplication.sharedApplication().delegate as AppDelegate).saveContext()
+        
+        (UIApplication.sharedApplication().delegate as! AppDelegate).saveContext()
     }
     
     //we can use the function below because we conform to the NSfetchResults delegate
