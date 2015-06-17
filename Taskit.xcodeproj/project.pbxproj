@@ -20,6 +20,7 @@
 		31FC2DF51A913629000A7C0C /* TaskItModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 31FC2DF31A913629000A7C0C /* TaskItModel.xcdatamodeld */; };
 		31FC2DF71A913896000A7C0C /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FC2DF61A913896000A7C0C /* TaskModel.swift */; };
 		4193797A1A72B57B009D3C02 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419379791A72B57B009D3C02 /* Date.swift */; };
+		41E8FE6F1B32081600184B4B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E8FE6E1B32081600184B4B /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		31FC2DF41A913629000A7C0C /* TaskItModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TaskItModel.xcdatamodel; sourceTree = "<group>"; };
 		31FC2DF61A913896000A7C0C /* TaskModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		419379791A72B57B009D3C02 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		41E8FE6E1B32081600184B4B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				315503441A6B3EC1006C2C4C /* ViewController.swift */,
 				31CC21341A6DF34B00C14931 /* TaskDetailViewController.swift */,
 				31CC21321A6DEFD000C14931 /* AddTaskViewController.swift */,
+				41E8FE6E1B32081600184B4B /* SettingsViewController.swift */,
 				419379791A72B57B009D3C02 /* Date.swift */,
 				315503461A6B3EC1006C2C4C /* Main.storyboard */,
 				315503621A6B4D61006C2C4C /* TaskCell.swift */,
@@ -242,6 +245,7 @@
 				315503431A6B3EC1006C2C4C /* AppDelegate.swift in Sources */,
 				31FC2DF71A913896000A7C0C /* TaskModel.swift in Sources */,
 				31CC21331A6DEFD000C14931 /* AddTaskViewController.swift in Sources */,
+				41E8FE6F1B32081600184B4B /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
