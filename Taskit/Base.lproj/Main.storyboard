@@ -268,9 +268,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FDU-yz-crc">
-                                <rect key="frame" x="0.0" y="90" width="320" height="160"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FDU-yz-crc">
+                                <rect key="frame" x="140" y="92" width="320" height="160"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="20N-99-K8M"/>
+                                    <constraint firstAttribute="height" constant="160" id="PP2-2Z-8kr"/>
+                                </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="capitalizeCell" id="Djy-bQ-wlS">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -281,9 +285,19 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="39o-OU-Slc">
-                                <rect key="frame" x="0.0" y="260" width="320" height="160"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Vz-hM-GB7">
+                                <rect key="frame" x="263" y="442" width="100" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="39o-OU-Slc">
+                                <rect key="frame" x="140" y="266" width="320" height="160"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="160" id="gma-vQ-fJM"/>
+                                    <constraint firstAttribute="width" constant="320" id="yxR-Do-xc0"/>
+                                </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="completeNewTodoCell" id="bgE-tB-uYG">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -294,14 +308,16 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Vz-hM-GB7">
-                                <rect key="frame" x="263" y="442" width="100" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="FDU-yz-crc" secondAttribute="centerX" id="5T3-M6-ZZS"/>
+                            <constraint firstItem="39o-OU-Slc" firstAttribute="top" secondItem="FDU-yz-crc" secondAttribute="bottom" constant="14" id="Gmj-56-zrm"/>
+                            <constraint firstItem="FDU-yz-crc" firstAttribute="top" secondItem="ek3-xg-bU3" secondAttribute="bottom" constant="28" id="gFA-oT-Lut"/>
+                            <constraint firstAttribute="centerX" secondItem="39o-OU-Slc" secondAttribute="centerX" id="hoe-Ng-15A"/>
+                            <constraint firstItem="8Vz-hM-GB7" firstAttribute="top" secondItem="39o-OU-Slc" secondAttribute="bottom" constant="16" id="o7f-RU-kVD"/>
+                            <constraint firstAttribute="centerX" secondItem="8Vz-hM-GB7" secondAttribute="centerX" constant="-13" id="zR5-6g-Lci"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="capitalizeTableView" destination="FDU-yz-crc" id="91e-10-KeE"/>
