@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, TaskDetailViewControllerDelegate, AddTaskViewControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -44,12 +44,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let indexPath = self.tableView.indexPathForSelectedRow()
             let thisTask = fetchedResultsController.objectAtIndexPath(indexPath!) as! TaskModel
             detailVC.detailTaskModel = thisTask
+            detailVC.delegate = self //TaskDetailViewControllerDelegate
          
             //we shouldn't be updating UI elements here: technically, they have not been instantiated
         }
         
         else if segue.identifier == "showTaskAdd" {
             let addTaskVC:AddTaskViewController = segue.destinationViewController as! AddTaskViewController
+            addTaskVC.delegate = self
             
         }
         
@@ -156,6 +158,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func getFetchedResultsController() -> NSFetchedResultsController {
         var fetchedResultsController = NSFetchedResultsController(fetchRequest: taskFetchRequest(), managedObjectContext: managedObjectContext, sectionNameKeyPath: "completed", cacheName: nil)
         return fetchedResultsController
+    }
+    
+    //TaskDetailViewControllerDelegate
+    func taskDetailEdited() {
+        //println("taskDetailEdited")
+        showAlert()
+        
+    }
+    
+    //AddTaskViewControllerDelegate
+    func addTaskCanceled(message: String) {
+        showAlert(message: message)
+    }
+    func addTask(message: String) {
+        showAlert(message: message)
+    }
+    
+    func showAlert(message:String = "Congratulations") {
+        var alert = UIAlertController(title: "Change Made!", message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 
 

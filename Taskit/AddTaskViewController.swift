@@ -9,12 +9,19 @@
 import UIKit
 import CoreData
 
+protocol AddTaskViewControllerDelegate {
+    func addTask(message: String)
+    func addTaskCanceled(message: String)
+}
+
 class AddTaskViewController: UIViewController {
 
     
     @IBOutlet weak var taskTextField: UITextField!
     @IBOutlet weak var subtaskTextField: UITextField!
     @IBOutlet weak var dueDatePicker: UIDatePicker!
+    
+    var delegate:AddTaskViewControllerDelegate?
     
 
     override func viewDidLoad() {
@@ -32,6 +39,7 @@ class AddTaskViewController: UIViewController {
     //we are not inside navigationController because we used modal
     @IBAction func cancelButtonTapped(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
+        delegate?.addTaskCanceled("Task was not added")
     }
 
     @IBAction func addTaskButtonTapped(sender: UIButton) {
@@ -40,10 +48,22 @@ class AddTaskViewController: UIViewController {
         let entityDescription = NSEntityDescription.entityForName("TaskModel", inManagedObjectContext: managedObjectContext!)
         let task = TaskModel(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext!)
         
-        task.task = taskTextField.text
+        if NSUserDefaults.standardUserDefaults().boolForKey(kShouldCapitalizeTaskKey) == true {
+            task.task = taskTextField.text.capitalizedString
+        }
+        else {
+            task.task = taskTextField.text
+        }
+        
         task.subtask = subtaskTextField.text
         task.date = dueDatePicker.date
-        task.completed = false
+        
+        if NSUserDefaults.standardUserDefaults().boolForKey(kShouldCompleteNewTodoKey) == true {
+            task.completed = true
+        }
+        else {
+            task.completed = false
+        }
         
         //saves changes to task above; any changes below this call are will not be saved
         appDelegate.saveContext()
@@ -58,8 +78,11 @@ class AddTaskViewController: UIViewController {
         for res in results {
             println(res)
         }
-        
+       
+        //dismiss first before showing the alert
         self.dismissViewControllerAnimated(true, completion: nil)
+        delegate?.addTask("task added")
+       
         
         
     }
