@@ -26,6 +26,8 @@ class TaskDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "Background")!)
+        
         self.taskTextField.text = detailTaskModel.task
         self.subtaskTextField.text = detailTaskModel.subtask
         self.dueDatePicker.date = detailTaskModel.date
@@ -59,4 +61,6 @@ class TaskDetailViewController: UIViewController {
         
         
     }
+    
+
 }

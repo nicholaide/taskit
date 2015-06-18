@@ -21,12 +21,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "Background")!)
+        
         fetchedResultsController = getFetchedResultsController()
         fetchedResultsController.delegate = self
         fetchedResultsController.performFetch(nil)
 
     }
-    
+        
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
     }
@@ -61,6 +63,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     //UITableViewDataSource
+    
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return fetchedResultsController.sections!.count
@@ -136,6 +139,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
         (UIApplication.sharedApplication().delegate as! AppDelegate).saveContext()
+    }
+    
+    
+    //based on comments on background color lecture, see https://github.com/lanhamm/TaskIt2
+    //was also on Updating...Autolayout lecture
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        cell.backgroundColor = UIColor.clearColor()
+        tableView.backgroundColor = UIColor.clearColor()
     }
     
     //we can use the function below because we conform to the NSfetchResults delegate
