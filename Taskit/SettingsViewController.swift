@@ -14,11 +14,10 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var capitalizeTableView: UITableView!
     @IBOutlet weak var completeNewTodoTableView: UITableView!
     
-    @IBOutlet weak var verLabel: UILabel!
+    
+    @IBOutlet weak var versionLabel: UILabel!
     
     let kVersionNumber = "1.0"
-    let kShouldCapitalizeTaskKey = "shouldCapitalizeTask"
-    let kShouldCompleteNewTodoKey = "completeNewTodo"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,7 +79,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             }
             else {
                 cell.textLabel?.text = "Complete Task"
-                if NSUserDefaults.standardUserDefaults().boolForKey(kShouldCompleteNewTodoKey) == true{
+                if NSUserDefaults.standardUserDefaults().boolForKey(kShouldCompleteNewTodoKey) == true {
                     cell.accessoryType = UITableViewCellAccessoryType.Checkmark
                 }
                 else {
@@ -93,6 +92,47 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func doneBarButtonItemPressed (barButtonItem: UIBarButtonItem) {
         self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    
+    //implement tableview delegate functions
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 30
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if tableView == self.capitalizeTableView {
+            return "Capitalize new Task?"
+        }
+        else {
+            return "Complete new Task?"
+        }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if tableView == self.capitalizeTableView {
+            if indexPath.row == 0 {
+                NSUserDefaults.standardUserDefaults().setBool(false, forKey: kShouldCapitalizeTaskKey)
+            }
+            else {
+                NSUserDefaults.standardUserDefaults().setBool(true, forKey: kShouldCapitalizeTaskKey)
+            }
+        }
+        else {
+            if indexPath.row  == 0 {
+                NSUserDefaults.standardUserDefaults().setBool(false, forKey: kShouldCompleteNewTodoKey)
+            }
+            else {
+                NSUserDefaults.standardUserDefaults().setBool(true, forKey: kShouldCompleteNewTodoKey)
+            }
+        }
+        NSUserDefaults.standardUserDefaults().synchronize()
+        tableView.reloadData()
+        
     }
     
     

@@ -135,6 +135,7 @@
                         <outlet property="capitalizeTableView" destination="W4r-SO-5ig" id="8hZ-lT-zIs"/>
                         <outlet property="completeNewToDoTableView" destination="8JP-9j-HMs" id="N91-aL-yrN"/>
                         <outlet property="verLabel" destination="w7V-GD-d7I" id="Zg4-jS-5bp"/>
+                        <outlet property="versionLabel" destination="w7V-GD-d7I" id="X8n-ec-Df7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Cs-zV-hkT" userLabel="First Responder" sceneMemberID="firstResponder"/>
