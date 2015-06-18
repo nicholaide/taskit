@@ -10,11 +10,10 @@ import UIKit
 
 class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    //sections might be better tah mutliple table views
+    //sections might be better than mutliple table views
+    
     @IBOutlet weak var capitalizeTableView: UITableView!
     @IBOutlet weak var completeNewTodoTableView: UITableView!
-    
-    
     @IBOutlet weak var versionLabel: UILabel!
     
     let kVersionNumber = "1.0"
@@ -46,7 +45,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if tableView == self.capitalizeTableView {
-            var capitalizeCell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("capitali        zeCell") as! UITableViewCell
+            var capitalizeCell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("capitalizeCell") as! UITableViewCell
             if indexPath.row == 0 {
                 capitalizeCell.textLabel?.text = "No do not Capitalize"
                 if NSUserDefaults.standardUserDefaults().boolForKey(kShouldCapitalizeTaskKey) == false {
