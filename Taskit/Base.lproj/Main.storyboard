@@ -259,7 +259,7 @@
         <!--Settings View Controller-->
         <scene sceneID="0qF-L9-Xec">
             <objects>
-                <viewController id="COR-IP-0LX" customClass="SettingsViewController" customModule="Taskit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="COR-IP-0LX" customClass="SettingsViewController" customModule="Taskit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ek3-xg-bU3"/>
                         <viewControllerLayoutGuide type="bottom" id="JsH-3T-UjB"/>
